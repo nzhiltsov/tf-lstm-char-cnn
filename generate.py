@@ -21,8 +21,8 @@ flags.DEFINE_integer('num_samples', 300, 'how many words to generate')
 flags.DEFINE_float('temperature', 1.0, 'sampling temperature')
 
 # model params
-flags.DEFINE_integer('rnn_size',        650,                            'size of LSTM internal state')
-flags.DEFINE_integer('highway_layers',  2,                              'number of highway layers')
+flags.DEFINE_integer('rnn_size',        300,                            'size of LSTM internal state')
+flags.DEFINE_integer('highway_layers',  1,                              'number of highway layers')
 flags.DEFINE_integer('char_embed_size', 15,                             'dimensionality of character embeddings')
 flags.DEFINE_string ('kernels',         '[1,2,3,4,5,6,7]',              'CNN kernel widths')
 flags.DEFINE_string ('kernel_features', '[50,100,150,200,200,200,200]', 'number of features in the CNN kernel')
@@ -33,7 +33,7 @@ flags.DEFINE_float  ('dropout',         0.5,                            'dropout
 flags.DEFINE_integer('max_word_length',     65,   'maximum word length')
 
 # bookkeeping
-flags.DEFINE_integer('seed',           3435, 'random number generator seed')
+flags.DEFINE_integer('seed',           3430, 'random number generator seed')
 flags.DEFINE_string ('EOS',            '+',  '<EOS> symbol. should be a single unused character (like +) for PTB and blank for others')
 
 FLAGS = flags.FLAGS
@@ -114,4 +114,4 @@ def main(_):
 
 
 if __name__ == "__main__":
-    tf.app.run()
+	tf.app.run()

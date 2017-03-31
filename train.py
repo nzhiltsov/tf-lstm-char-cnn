@@ -19,8 +19,8 @@ flags.DEFINE_string('train_dir',   'cv',     'training directory (models and sum
 flags.DEFINE_string('load_model',   None,    '(optional) filename of the model to load. Useful for re-starting training from a checkpoint')
 
 # model params
-flags.DEFINE_integer('rnn_size',        650,                            'size of LSTM internal state')
-flags.DEFINE_integer('highway_layers',  2,                              'number of highway layers')
+flags.DEFINE_integer('rnn_size',        300,                            'size of LSTM internal state')
+flags.DEFINE_integer('highway_layers',  1,                              'number of highway layers')
 flags.DEFINE_integer('char_embed_size', 15,                             'dimensionality of character embeddings')
 flags.DEFINE_string ('kernels',         '[1,2,3,4,5,6,7]',              'CNN kernel widths')
 flags.DEFINE_string ('kernel_features', '[50,100,150,200,200,200,200]', 'number of features in the CNN kernel')
