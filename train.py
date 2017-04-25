@@ -22,8 +22,8 @@ flags.DEFINE_string('load_model',   None,    '(optional) filename of the model t
 flags.DEFINE_integer('rnn_size',        300,                            'size of LSTM internal state')
 flags.DEFINE_integer('highway_layers',  1,                              'number of highway layers')
 flags.DEFINE_integer('char_embed_size', 15,                             'dimensionality of character embeddings')
-flags.DEFINE_string ('kernels',         '[1,2,3,4,5,6,7]',              'CNN kernel widths')
-flags.DEFINE_string ('kernel_features', '[50,100,150,200,200,200,200]', 'number of features in the CNN kernel')
+flags.DEFINE_string ('kernels',         '[1,2,3,4,5,6]',              'CNN kernel widths')
+flags.DEFINE_string ('kernel_features', '[25,50,150,200,200,200]', 'number of features in the CNN kernel')
 flags.DEFINE_integer('rnn_layers',      2,                              'number of layers in the LSTM')
 flags.DEFINE_float  ('dropout',         0.5,                            'dropout. 0 = no dropout')
 
@@ -33,14 +33,14 @@ flags.DEFINE_float  ('learning_rate',       1.0,  'starting learning rate')
 flags.DEFINE_float  ('decay_when',          1.0,  'decay if validation perplexity does not improve by more than this much')
 flags.DEFINE_float  ('param_init',          0.05, 'initialize parameters at')
 flags.DEFINE_integer('num_unroll_steps',    35,   'number of timesteps to unroll for')
-flags.DEFINE_integer('batch_size',          20,   'number of sequences to train on in parallel')
+flags.DEFINE_integer('batch_size',          32,   'number of sequences to train on in parallel')
 flags.DEFINE_integer('max_epochs',          25,   'number of full passes through the training data')
 flags.DEFINE_float  ('max_grad_norm',       5.0,  'normalize gradients at')
-flags.DEFINE_integer('max_word_length',     65,   'maximum word length')
+flags.DEFINE_integer('max_word_length',     30,   'maximum word length')
 
 # bookkeeping
 flags.DEFINE_integer('seed',           3435, 'random number generator seed')
-flags.DEFINE_integer('print_every',    5,    'how often to print current loss')
+flags.DEFINE_integer('print_every',    10,    'how often to print current loss')
 flags.DEFINE_string ('EOS',            '+',  '<EOS> symbol. should be a single unused character (like +) for PTB and blank for others')
 
 FLAGS = flags.FLAGS
@@ -80,9 +80,6 @@ def main(_):
                               FLAGS.batch_size, FLAGS.num_unroll_steps)
 
     valid_reader = DataReader(word_tensors['valid'], char_tensors['valid'],
-                              FLAGS.batch_size, FLAGS.num_unroll_steps)
-
-    test_reader = DataReader(word_tensors['test'], char_tensors['test'],
                               FLAGS.batch_size, FLAGS.num_unroll_steps)
 
     print('initialized all dataset readers')
